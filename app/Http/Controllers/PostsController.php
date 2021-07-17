@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class PostsController extends Controller
 {
@@ -58,10 +58,10 @@ class PostsController extends Controller
 
         $request->image->move(public_path('posts/images'), $newImageName);
 
-        Post::create([
+        $post = Post::create([
             'title' =>$request->input('title'),
             'description' =>$request->input('description'),
-            'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
+            $post['slug'] = Str::slug($request->title, '-'),
             'image_path' => $newImageName,
             'user_id' => Auth()->user()->id
         ]);

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PagesController::class, 'index']);
-
 Route::resource('/blog', PostsController::class);
 
 Auth::routes();
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile/{user:name}', [UsersController::class, 'profile']);
+});
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
