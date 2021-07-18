@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Blog">
+    <meta name="keywords" content="Create, Blog, Read, Update, News, Development, Laravel">
+    <meta name="author" content="Angelino Verhaeghe - Full Stack Developer - 2021">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -17,46 +20,17 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 h-screen antialiased leading-none font-sans">
-    <div id="app">
-        <header class="bg-gray-800 py-6">
-            <div class="container mx-auto flex justify-between items-center px-6">
-                <div>
-                    <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline uppercase">
-                        Blog
-                    </a>
-                </div>
-                <nav class="space-x-4 text-gray-300 text-sm sm:text-base">
-                    <a class="no-underline hover:underline" href="/">Home</a>
-                    <a class="no-underline hover:underline" href="/blog">Blog</a>
-                    @guest
-                        <a class="no-underline hover:underline" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        @if (Route::has('register'))
-                            <a class="no-underline hover:underline"
-                                href="{{ route('register') }}">{{ __('Register') }}</a>
-                        @endif
-                    @else
-                        <span><a href="/profile/{{ Auth::user()->name }}">{{ Auth::user()->name }}</a></span>
+<body class="bg-gray-100 font-sans pt-[84px] sm:pt-[96px]">
 
-                        <a href="{{ route('logout') }}" class="no-underline hover:underline"
-                            onclick="event.preventDefault();
-                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                            {{ csrf_field() }}
-                        </form>
-                    @endguest
-                </nav>
-            </div>
-        </header>
-        <div>
-            @yield('content')
-        </div>
+    @include('includes.navigation')
 
-        <div>
-            @include('layouts.footer')
-        </div>
-
+    <main>
+        @yield('content')
+    </main>
+    <div>
+        @include('includes.footer')
     </div>
+
 </body>
 
 </html>

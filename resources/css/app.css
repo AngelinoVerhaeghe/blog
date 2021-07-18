@@ -6,13 +6,21 @@
 
 @import "tailwindcss/utilities";
 
+
 .background-image {
-    background-image: url('https://images.pexels.com/photos/2473183/pexels-photo-2473183.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+    background-image: url('https://images.pexels.com/photos/1169107/pexels-photo-1169107.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
     height: 400px;
+}
+
+@media screen and (max-width: 768px){
+    .background-image {
+         height: 300px;
+    }
+
 }
 
 ::-webkit-scrollbar {
