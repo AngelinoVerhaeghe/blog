@@ -35,50 +35,53 @@
         </div>
     @endif
     @if (count($posts) > 0)
-        <div class="grid lg:grid-cols-2 w-4/5 lg:gap-20 mx-auto py-15 border-b border-gray-200">
+        <div class="">
             @foreach ($posts as $post)
-                <div class="mb-10 lg:mb-0">
-                    <img src="{{ asset('posts/images/' . $post->image_path) }}" class="object-cover" alt="">
-                </div>
-                <div>
-                    <div class="flex justify-between items-center">
-                        <h2 class="text-5xl text-gray-500 font-bold">
-                            {{ $post->title }}
-                        </h2>
-                        {{-- Only show Edit button if user is logged in and the user have the same id of the post! --}}
-                        @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
-                            <span>
-                                <a href="/blog/{{ $post->slug }}/edit"
-                                    class="text-sm text-gray-100 bg-blue-600 py-2 px-6 rounded-3xl shadow-md italic hover:bg-blue-700 transition duration-300 ease-in-out">Edit</a>
-                            </span>
-                            <span>
-                                <form action="/blog/{{ $post->slug }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit"
-                                        class="text-sm text-gray-100 bg-red-600 py-2 px-6 rounded-3xl shadow-md italic hover:bg-red-700 transition duration-300 ease-in-out">
-                                        Delete
-                                    </button>
-                                </form>
-                            </span>
-                        @endif
+                <div class="mb-10 border-b-2 border-gray-200">
+                    <div class="mb-10 lg:mb-0">
+                        <img src="{{ asset('posts/images/' . $post->image_path) }}" class="object-cover" alt="">
                     </div>
+                    <div>
+                        <div class="flex justify-between items-center">
+                            <h2 class="text-5xl text-gray-500 font-bold">
+                                {{ $post->title }}
+                            </h2>
+                            {{-- Only show Edit button if user is logged in and the user have the same id of the post! --}}
+                            @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
+                                <span>
+                                    <a href="/blog/{{ $post->slug }}/edit"
+                                        class="text-sm text-gray-100 bg-blue-600 py-2 px-6 rounded-3xl shadow-md italic hover:bg-blue-700 transition duration-300 ease-in-out">Edit</a>
+                                </span>
+                                <span>
+                                    <form action="/blog/{{ $post->slug }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-sm text-gray-100 bg-red-600 py-2 px-6 rounded-3xl shadow-md italic hover:bg-red-700 transition duration-300 ease-in-out">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </span>
+                            @endif
+                        </div>
 
-                    <p class="text-xl text-gray-700 my-10 leading-8 font-light line-clamp-5">
-                        {{ $post->description }}
-                    </p>
-                    <span class="flex justify-start xl:justify-end text-gray-500 mb-5">
-                        By &nbsp;<span class="text-gray-800 font-bold italic">{{ $post->user->name }}</span>, -
-                        {{-- {{ date('jS M Y', strtotime($post->updated_at)) }} --}}
-                        {{ $post->created_at->diffForHumans() }}
-                    </span>
-                    <div class="flex items-baseline mt-10">
-                        <a href="/blog/{{ $post->slug }}"
-                            class="uppercase bg-blue-600 text-gray-100 text-md font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">Keep
-                            Reading</a>
+                        <p class="text-xl text-gray-700 my-10 leading-8 font-light line-clamp-5">
+                            {{ $post->description }}
+                        </p>
+                        <span class="flex justify-start xl:justify-end text-gray-500 mb-5">
+                            By &nbsp;<span class="text-gray-800 font-bold italic">{{ $post->user->name }}</span>, -
+                            {{-- {{ date('jS M Y', strtotime($post->updated_at)) }} --}}
+                            {{ $post->created_at->diffForHumans() }}
+                        </span>
+                        <div class="flex items-baseline my-10">
+                            <a href="/blog/{{ $post->slug }}"
+                                class="uppercase bg-blue-600 text-gray-100 text-md font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">Keep
+                                Reading</a>
+                        </div>
+
                     </div>
-
                 </div>
+
             @endforeach
         </div>
     @else

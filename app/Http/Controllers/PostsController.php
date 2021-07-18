@@ -58,13 +58,14 @@ class PostsController extends Controller
 
         $request->image->move(public_path('posts/images'), $newImageName);
 
-        $post = Post::create([
-            'title' =>$request->input('title'),
-            'description' =>$request->input('description'),
-            $post['slug'] = Str::slug($request->title, '-'),
-            'image_path' => $newImageName,
-            'user_id' => Auth()->user()->id
-        ]);
+        $post = new Post();
+        $post->title = $request->input('title');
+        $post->description = $request->input('description');
+        $post['slug'] = Str::slug($request->title, '-');
+        $post->image_path = $newImageName;
+        $post->user_id = Auth()->user()->id;
+
+        $post->save();
 
         return redirect('/blog')->with('message', 'Your post has been added!');
     }
@@ -106,12 +107,15 @@ class PostsController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        Post::where('slug', $slug)
-            ->update([
-                'title' =>$request->input('title'),
-                'description' =>$request->input('description'),
-                'slug' => SlugService::createSlug(Post::class, 'slug', $request->title),
-            ]);
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+        $post = Post::where('slug', $slug);
+        $input = $request->except('image_path', '_token', '_method');
+        $input['slug'] = Str::slug($request->title, '-');
+        $post->update($input);
 
         return redirect('/blog')
             ->with('message', 'Your post has been updated!');
