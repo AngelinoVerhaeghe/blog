@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Avatar;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'role_id',
         'name',
         'email',
         'password',
@@ -48,6 +50,17 @@ class User extends Authenticatable
 
     public function avatar() {
         return $this->belongsTo(Avatar::class);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+
+    public function isAdmin() {
+        if($this->role->name == "Administrator"){
+            return true;
+        }
+        return false;
     }
 
 }

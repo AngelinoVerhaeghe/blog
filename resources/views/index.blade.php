@@ -18,32 +18,42 @@
     <section class="container mx-auto px-2 my-15 lg:px-0">
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6 lg:gap-20">
             <div class="flex items-center justify-center">
-                <img src="https://cdn.pixabay.com/photo/2015/04/19/08/33/flower-729512_960_720.jpg"
-                    class="object-cover md:h-full" alt="">
+                <img src="{{ asset('images/about_image.jpg') }}" class="object-cover md:h-full shadow-md" alt="">
             </div>
             <div class="flex flex-col mt-5 md:mt-0 2xl:justify-center">
                 <h2 class="text-2xl lg:text-3xl xl:text-4xl text-gray-600 font-bold ">
-                    Bermooievaarsbek
+                    About
                 </h2>
                 <p class="text-lg lg:text-xl text-gray-500 italic font-semibold py-4">
-                    Geranium pyrenaicum
+                    Full Stack Developer
                 </p>
                 <p class="text-base xl:w-9/12 text-gray-600 font-light pb-4">
-                    Bermooievaarsbek is een overblijvende, behaarde plant van 20 tot 60 cm hoog, oorspronkelijk afkomstig
-                    uit de bergstreken van Zuid-Europa, het Zwarte Zeegebied en het Atlasgebied.
-                    In 1836 werd ze voor het eerst in Nederland, bij Leiden gevonden.
-                    Sindsdien heeft ze zich uitgebreid en komt nu vrij zeldzaam voor in Zuid-Limburg, het rivierengebied en
-                    de stedelijke gebieden. Elders is ze zeldzaam en op de Waddeneilanden komt ze niet voor.
+                    Hallo, ik ben Angelino Verhaeghe uit Geluwe - Belgie.
+                    Opzoek naar een #job in #development, mijn LinkedIn kun je via deze <a
+                        href="https://www.linkedin.com/in/angelino-verhaeghe/" target="_blank"
+                        class="italic font-medium text-blue-500">link</a> bekijken.</p>
+                <p class="text-lg lg:text-xl text-gray-500 italic font-semibold py-4">
+                    Verder...
                 </p>
-                <a href="/blog"
+                <p class="text-base xl:w-9/12 text-gray-600 font-light pb-4"> Opleiding gevolgd bij <a
+                        href="https://syntrawest.be/campussen/campus/syntra-west-roeselare" target="_blank"
+                        class="italic font-medium text-blue-500">Syntra West
+                        Roeselare</a> als Full Stack Developer. Technologieën aangeleerd zoals <a
+                        href="https://laravel.com/" target="_blank" class="italic font-medium text-blue-500">Laravel</a>,
+                    waaruit dit project
+                    ook is uitgebouwd. De opmaak van dit project is met het <a href="https://tailwindcss.com/"
+                        target="_blank" class="italic font-medium text-blue-500">Tailwindcss</a> framework. Probeer mijn
+                    blog project even uit, registreer maak een blog post en vooral welkom!
+                </p>
+                {{-- <a href="/blog"
                     class="w-2/5 uppercase bg-blue-600 text-gray-100 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-blue-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Lees
-                    Meer</a>
+                    Meer</a> --}}
             </div>
         </div>
     </section>
 
     <section class="text-center p-15 bg-black text-white">
-        <div class="mx-auto divide-y-2 divide-gray-500 xl:w-6/12 ">
+        <div class="mx-auto divide-y-2 divide-gray-800 xl:w-6/12 ">
             <h2 class="text-2xl pb-5">
                 Vaardigheden...
             </h2>
@@ -70,42 +80,57 @@
         </p>
     </section>
 
-    <section
-        class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 sm:gap-6 xl:gap-10 px-2 lg:px-0">
-        @foreach ($recentPosts as $recentPost)
-            <div class="bg-pink-800 text-gray-100 shadow-xl rounded-xl overflow-hidden">
-                <div class="">
-                    <img src="{{ asset('posts/images/' . $recentPost->image_path) }}"
-                        class="object-cover h-52 xl:h-56 w-full" alt="">
-                </div>
-                <div class="flex flex-col p-4">
-                    <div>
-                        <span
-                            class="uppercase text-xs font-semibold bg-pink-500 rounded-full shadow-md py-1 px-3">#Games</span>
+    @if (count($recentPosts) > 0)
+        <section
+            class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-6 sm:gap-6 xl:gap-10 px-2 lg:px-0">
+            @foreach ($recentPosts as $recentPost)
+                <div class="bg-pink-800 text-gray-100 shadow-xl rounded-xl overflow-hidden">
+                    <div class="">
+                        <img src="{{ asset('posts/images/' . $recentPost->image_path) }}"
+                            class="object-cover h-52 xl:h-56 w-full" alt="">
                     </div>
+                    <div class="flex flex-col p-4">
+                        <div>
+                            <span
+                                class="uppercase text-xs font-semibold bg-pink-500 rounded-full shadow-md py-1 px-3">#Games</span>
+                        </div>
 
-                    <h3 class="text-2xl font-semibold mt-4">
-                        {{ $recentPost->title }}
-                    </h3>
-                    <p class="font-light line-clamp-3 my-4">
-                        {{ $recentPost->description }}
-                    </p>
-                    <div class="my-4">
-                        <a href="/blog/{{ $recentPost->slug }}"
-                            class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs lg:text-sm font-extrabold py-3 px-6 lg:px-10 rounded-3xl shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500">Lees
-                            Meer</a>
+                        <h3 class="text-2xl font-semibold mt-4">
+                            {{ $recentPost->title }}
+                        </h3>
+                        <p class="font-light line-clamp-3 my-4">
+                            {{ $recentPost->description }}
+                        </p>
+                        <div class="my-4">
+                            <a href="/blog/{{ $recentPost->slug }}"
+                                class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs lg:text-sm font-extrabold py-3 px-6 lg:px-10 rounded-3xl shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500">Lees
+                                Meer</a>
+                        </div>
                     </div>
-
                 </div>
+            @endforeach
+            <section class="container mx-auto mt-10">
+                <div class="flex items-center justify-center lg:justify-end">
+                    <a href="/blog"
+                        class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Meer...</a>
+                </div>
+            </section>
+        </section>
+    @else
+        <div
+            class="container mx-auto flex flex-col items-center text-center justify-center py-10 border-b border-gray-200 px-8">
+            <p class="text-xl text-gray-600 font-medium">Er zijn geen blog posts op dit moment...</p>
+            <p class="text-xl text-gray-600 font-medium">Registreer of Login om een blog te creëren</p>
+            <div class="flex space-x-4 mt-8">
+                <a href="/register"
+                    class="uppercase bg-pink-600 text-gray-100 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-pink-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Registreer</a>
+                <a href="/login"
+                    class="uppercase border border-pink-600 text-pink-600 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-gray-200 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Login</a>
             </div>
-        @endforeach
-    </section>
 
-    <section class="container mx-auto mt-10">
-        <div class="flex items-center justify-center lg:justify-end">
-            <a href="/blog"
-                class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Meer...</a>
         </div>
-    </section>
+    @endif
+
+
 
 @endsection

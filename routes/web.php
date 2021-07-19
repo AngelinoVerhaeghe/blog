@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\UsersController;
@@ -17,14 +19,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//? Routes public access
 Route::get('/', [PagesController::class, 'index']);
 Route::resource('/blog', PostsController::class);
 
 Auth::routes();
 
+//? Routes access only for logged in Users
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile/{user:name}', [UsersController::class, 'profile']);
 });
 
-Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//? Routes access only for adminstrators
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/admin', function() {
+        return view('admin.index');
+    })->name('admin');
+
+    Route::get('/admin', [HomeController::class, 'index'])->name('admin');
+});
+
+
+//? Example
+/* Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
 
