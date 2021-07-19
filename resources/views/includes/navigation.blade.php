@@ -30,7 +30,7 @@
                     <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                         href="/">Home</a>
                     <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                        href="/blog">Blog</a>
+                        href="/blogs">Blog</a>
                     @guest
                         <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                             href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -44,7 +44,7 @@
                         <a href="{{ route('logout') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                             onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                                                                                                                                                                                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
@@ -65,7 +65,7 @@
                 <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                     href="/">Home</a>
                 <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                    href="/blog">Blog</a>
+                    href="/blogs">Blog</a>
                 @guest
                     <a class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                         href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -79,7 +79,7 @@
                     <a href="{{ route('logout') }}"
                         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         {{ csrf_field() }}
                     </form>

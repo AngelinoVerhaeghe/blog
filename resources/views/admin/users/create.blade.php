@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-    Dashboard
+    Dashboard | Create User
 @endsection
 
 @section('content')
     <section>
         <div>
             <div>
-                <h1>Dashboard</h1>
+                <h1>Create</h1>
             </div>
         </div>
     </section>

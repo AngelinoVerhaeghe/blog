@@ -8,7 +8,7 @@
                 project in laravel!
             </h3>
             <div class="mt-5 mb-2">
-                <a href="/blog"
+                <a href="/blogs"
                     class="text-lg font-bold uppercase bg-gray-50 text-gray-700 rounded-full shadow-md py-2 px-4 md:px-10 hover:bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Lees
                     Meer</a>
             </div>
@@ -86,13 +86,13 @@
             @foreach ($recentPosts as $recentPost)
                 <div class="bg-pink-800 text-gray-100 shadow-xl rounded-xl overflow-hidden">
                     <div class="">
-                        <img src="{{ asset('posts/images/' . $recentPost->image_path) }}"
+                        <img src="{{ asset('posts/images/' . $recentPost->photo->file) }}"
                             class="object-cover h-52 xl:h-56 w-full" alt="">
                     </div>
                     <div class="flex flex-col p-4">
                         <div>
                             <span
-                                class="uppercase text-xs font-semibold bg-pink-500 rounded-full shadow-md py-1 px-3">#Games</span>
+                                class="uppercase text-xs font-semibold bg-pink-500 rounded-full shadow-md py-1 px-3">{{ $recentPost->category->name }}</span>
                         </div>
 
                         <h3 class="text-2xl font-semibold mt-4">
@@ -102,35 +102,46 @@
                             {{ $recentPost->description }}
                         </p>
                         <div class="my-4">
-                            <a href="/blog/{{ $recentPost->slug }}"
+                            <a href="/blogs/{{ $recentPost->slug }}"
                                 class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs lg:text-sm font-extrabold py-3 px-6 lg:px-10 rounded-3xl shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500">Lees
                                 Meer</a>
                         </div>
                     </div>
                 </div>
             @endforeach
-            <section class="container mx-auto mt-10">
-                <div class="flex items-center justify-center lg:justify-end">
-                    <a href="/blog"
-                        class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Meer...</a>
-                </div>
-            </section>
+
         </section>
     @else
         <div
             class="container mx-auto flex flex-col items-center text-center justify-center py-10 border-b border-gray-200 px-8">
             <p class="text-xl text-gray-600 font-medium">Er zijn geen blog posts op dit moment...</p>
-            <p class="text-xl text-gray-600 font-medium">Registreer of Login om een blog te creëren</p>
-            <div class="flex space-x-4 mt-8">
-                <a href="/register"
-                    class="uppercase bg-pink-600 text-gray-100 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-pink-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Registreer</a>
-                <a href="/login"
-                    class="uppercase border border-pink-600 text-pink-600 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-gray-200 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Login</a>
-            </div>
-
+            @guest
+                <p class="text-xl text-gray-600 font-medium">Registreer of Login om een blog te creëren</p>
+                <div class="flex space-x-4 mt-8">
+                    <a href="/register"
+                        class="uppercase bg-pink-600 text-gray-100 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-pink-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Registreer</a>
+                    <a href="/login"
+                        class="uppercase border border-pink-600 text-pink-600 text-sm font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-gray-200 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2">Login</a>
+                </div>
+            @else
+                <div class="my-12">
+                    <a href="/blogs/create"
+                        class="bg-green-500 uppercase bg-transparent text-gray-100 text-sm font-extrabold py-3 px-5 rounded-3xl shadow-md hover:bg-green-600 transition duration-300 ease-in-out">Create
+                        Post</a>
+                </div>
+            @endguest
         </div>
     @endif
 
+    {{-- Only show button when we got more than 3 recent posts --}}
+    @if (count($recentPosts) > 3)
+        <section class="container mx-auto mt-10">
+            <div class="flex items-center justify-center lg:justify-end">
+                <a href="/blogs"
+                    class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Meer...</a>
+            </div>
+        </section>
+    @endif
 
 
 @endsection

@@ -40,7 +40,7 @@
                     <span class="mt-2 text-base leading-normal">
                         Select a file
                     </span>
-                    <input type="file" name="image" class="hidden">
+                    <input type="file" name="photo_id" class="hidden">
                 </label>
             </div>
             <button type="submit"

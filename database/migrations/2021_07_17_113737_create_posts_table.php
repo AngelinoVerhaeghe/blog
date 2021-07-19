@@ -18,11 +18,13 @@ class CreatePostsTable extends Migration
             $table->string('slug');
             $table->string('title');
             $table->longText('description');
-            $table->string('image_path');
-            $table->timestamps();
+            /* $table->string('image_path'); */
             $table->unsignedBigInteger('user_id'); //? Link users table with posts table
             $table->foreign('user_id')->references('id')->on('users');
-
+            $table->unsignedBigInteger('category_id'); //? Link categories table with posts table
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('photo_id');
+            $table->timestamps();
         });
     }
 

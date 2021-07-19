@@ -29,7 +29,7 @@
     {{-- Show button only if user is logged in! --}}
     @if (Auth::check())
         <div class="pt-15 w-4/5 m-auto">
-            <a href="/blog/create"
+            <a href="/blogs/create"
                 class="bg-green-500 uppercase bg-transparent text-gray-100 text-xs font-extrabold py-3 px-5 rounded-3xl shadow-md hover:bg-green-600 transition duration-300 ease-in-out">Create
                 Post</a>
         </div>
@@ -39,7 +39,7 @@
             @foreach ($posts as $post)
                 <div class="mb-10 border-b-2 border-gray-200">
                     <div class="mb-10 lg:mb-0">
-                        <img src="{{ asset('posts/images/' . $post->image_path) }}" class="object-cover" alt="">
+                        <img src="{{ asset('posts/images/' . $post->photo->file) }}" class="object-cover" alt="">
                     </div>
                     <div>
                         <div class="flex justify-between items-center">
@@ -49,11 +49,11 @@
                             {{-- Only show Edit button if user is logged in and the user have the same id of the post! --}}
                             @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                                 <span>
-                                    <a href="/blog/{{ $post->slug }}/edit"
+                                    <a href="/blogs/{{ $post->slug }}/edit"
                                         class="text-sm text-gray-100 bg-blue-600 py-2 px-6 rounded-3xl shadow-md italic hover:bg-blue-700 transition duration-300 ease-in-out">Edit</a>
                                 </span>
                                 <span>
-                                    <form action="/blog/{{ $post->slug }}" method="POST">
+                                    <form action="/blogs/{{ $post->slug }}" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"
@@ -74,7 +74,7 @@
                             {{ $post->created_at->diffForHumans() }}
                         </span>
                         <div class="flex items-baseline my-10">
-                            <a href="/blog/{{ $post->slug }}"
+                            <a href="/blogs/{{ $post->slug }}"
                                 class="uppercase bg-blue-600 text-gray-100 text-md font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">Keep
                                 Reading</a>
                         </div>

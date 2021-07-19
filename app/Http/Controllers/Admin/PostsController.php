@@ -1,23 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Post;
 use App\Models\Photo;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PostsCreateRequest;
 
 class PostsController extends Controller
 {
-
-    /* Security that if User is NOT logged or registered on the website, user can only see index and the show pages!
-    So user can not create or edit a post! */
-    public function __construct()
-    {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,11 +19,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-       /*  $posts = Post::all(); */
-        return view('blog.index')
-            ->with('posts', Post::orderBy('updated_at', 'DESC')
-            ->get()
-        );
+        $posts = Post::with(['category'])->get();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -39,7 +30,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        //? Get categories in blade to select category of the blogpost
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -69,69 +62,51 @@ class PostsController extends Controller
 
         $post->save();
 
-        return redirect('/blogs')->with('message', 'Your post has been added!');
+        return redirect('/admin/posts')->with('message', 'Your post has been added!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        return view('blog.show')
-            ->with('post', Post::where('slug', $slug)
-            ->first()
-        );
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('blog.edit')
-            ->with('post', Post::where('slug', $slug)
-            ->first()
-        );
+        return view('admin.posts.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
-
-        $post = Post::where('slug', $slug);
-        $input = $request->except('image_path', '_token', '_method');
-        $input['slug'] = Str::slug($request->title, '-');
-        $post->update($input);
-
-        return redirect('/blogs')
-            ->with('message', 'Your post has been updated!');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $post = Post::where('slug', $slug);
-        $post->delete();
-
-        return redirect('/blog')
-        ->with('message', 'Your post has been deleted!');
+        //
     }
 }
-

@@ -20,6 +20,7 @@ class UsersSeeder extends Seeder
             'role_id' => '1',
             'name' => 'admin',
             'email' => 'admin@admin.com',
+            'is_active' => '1',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678'),
             'created_at' => now(),

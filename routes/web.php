@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\PostsController;
-use App\Http\Controllers\UsersController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 //? Routes public access
 Route::get('/', [PagesController::class, 'index']);
-Route::resource('/blog', PostsController::class);
+Route::resource('/blogs', PostsController::class);
 
 Auth::routes();
 
@@ -37,6 +36,12 @@ Route::group(['middleware' => 'admin'], function() {
     })->name('admin');
 
     Route::get('/admin', [HomeController::class, 'index'])->name('admin');
+    Route::resource('/admin/users', '\App\Http\Controllers\Admin\UsersController');
+    Route::resource('/admin/categories', '\App\Http\Controllers\Admin\CategoriesController');
+    Route::resource('/admin/posts', '\App\Http\Controllers\Admin\PostsController');
+
+    Route::post('/admin/posts/create', [\App\Http\Controllers\Admin\PostsController::class, 'store'])->name('post.store');
+
 });
 
 
