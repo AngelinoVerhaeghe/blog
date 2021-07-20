@@ -9,14 +9,13 @@
         <div class="flex items-center justify-between py-8 pb-6 sm:px-6 lg:px-8 bg-gray-300 shadow-md">
             <h1 class="text-3xl text-gray-700 font-medium ">Users</h1>
             <a href="{{ url('admin/users/create') }}"
-                class="uppercase bg-green-600 text-gray-100 text-md font-extrabold py-3 px-6 rounded-3xl shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                <span class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                class="uppercase bg-green-600 text-gray-100 text-md font-extrabold rounded-full p-3 shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <span class="flex items-center" title="Create User">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
-                    Create
                 </span>
             </a>
         </div>

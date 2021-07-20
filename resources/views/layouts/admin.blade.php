@@ -27,7 +27,8 @@
             @include('includes.admin.navigation')
         </header>
 
-        <main class="bg-gray-200 flex-grow">
+        <main class="bg-gray-200 flex flex-col flex-grow">
+            @include('includes.admin.topheader')
             @yield('content')
         </main>
     </div>

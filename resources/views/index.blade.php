@@ -3,14 +3,15 @@
 @section('content')
     <section class="background-image flex items-center">
         <div class="grid grid-cols-1 text-center mx-auto">
-            <h1 class="text-gray-900 text-2xl md:text-4xl lg:text-6xl uppercase font-bold">Welkom op mijn blog</h1>
+            <h1 class="text-gray-900 lg:text-white text-2xl md:text-4xl lg:text-6xl uppercase font-bold">Welkom op mijn blog
+            </h1>
             <h3 class="text-gray-800 lg:text-white italic lowercase text-1xl md:text-3xl lg:text-5xl my-3 md:my-5">
                 project in laravel!
             </h3>
             <div class="mt-5 mb-2">
                 <a href="/blogs"
-                    class="text-lg font-bold uppercase bg-gray-50 text-gray-700 rounded-full shadow-md py-2 px-4 md:px-10 hover:bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Lees
-                    Meer</a>
+                    class="text-lg font-bold uppercase bg-gray-50 text-gray-700 rounded-full shadow-md py-2 px-4 md:px-10 hover:bg-gray-300 hover:text-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Read
+                    More...</a>
             </div>
         </div>
     </section>
@@ -55,7 +56,7 @@
     <section class="text-center p-15 bg-black text-white">
         <div class="mx-auto divide-y-2 divide-gray-800 xl:w-6/12 ">
             <h2 class="text-2xl pb-5">
-                Vaardigheden...
+                Skills...
             </h2>
             <span class="text-4xl font-extrabold block py-1">
                 Frontend Development
@@ -76,7 +77,7 @@
         <span class="uppercase text-2xl font-medium text-gray-400">Blog</span>
         <h2 class="text-4xl font-bold py-10">Recent Posts</h2>
         <p class="m-auto w-4/5 text-gray-500">
-            Overzicht van enkele blog posts, bevinden zich hier onder.
+            An overview of some blog posts can be found below.
         </p>
     </section>
 
@@ -103,8 +104,8 @@
                         </p>
                         <div class="my-4">
                             <a href="/blogs/{{ $recentPost->slug }}"
-                                class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs lg:text-sm font-extrabold py-3 px-6 lg:px-10 rounded-3xl shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500">Lees
-                                Meer</a>
+                                class="uppercase bg-transparent border-2 border-gray-100 text-gray-100 text-xs lg:text-sm font-extrabold py-3 px-6 lg:px-10 rounded-3xl shadow-md focus:outline-none focus:ring-2 focus:ring-pink-500 hover:bg-pink-600 transition duration-300 ease-in-out">Read
+                                More</a>
                         </div>
                     </div>
                 </div>

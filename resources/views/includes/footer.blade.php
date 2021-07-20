@@ -1,20 +1,21 @@
-<footer class="bg-gray-800 py-20 mt-20">
-    <div class="sm:grid grid-cols-3 w-4/5 pb-10 m-auto border-b-2 border-gray-700">
+<footer class="bg-gray-800">
+    <div
+        class="container mx-auto text-center sm:text-left sm:grid sm:grid-cols-3 sm:gap-10 border-b-2 border-gray-700 px-2 mt-15 py-10 lg:px-0">
         <div>
             <h3 class="text-lg sm:font-bold text-gray-100">Pages</h3>
 
             <ul class="py-4 sm:text-sm pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">Home</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/') }}">Home</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/blog">Blog</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/blogs') }}">Blog</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/login">Login</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/login') }}">Login</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/register">Register</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/register') }}">Register</a>
                 </li>
             </ul>
         </div>
@@ -23,41 +24,51 @@
             <h3 class="text-lg sm:font-bold text-gray-100">Find Us</h3>
 
             <ul class="py-4 sm:text-sm pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">What we do</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/') }}">Web Development</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/">Address</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/') }}">Address</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/">Phone</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/') }}">Phone</a>
                 </li>
-                <li class="pb-1">
-                    <a href="/">Contact</a>
+                <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                    <a href="{{ url('/') }}">Email</a>
                 </li>
             </ul>
         </div>
 
         <div>
             <h3 class="text-lg sm:font-bold text-gray-100">Latest Posts</h3>
-
             <ul class="py-4 sm:text-sm pt-4 text-gray-400">
-                <li class="pb-1">
-                    <a href="/">Why we love tech</a>
+                {{-- @foreach ($recentPosts as $recentPost)
+                    <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
+                        <a href="/blogs/{{ $recentPost->slug }}">{{ $recentPost->title }}</a>
+                    </li>
+                @endforeach --}}
+            </ul>
+        </div>
+    </div>
+    <div class="container mx-auto px-2 lg:px-0">
+        <div class="flex flex-col items-center justify-between py-5">
+            <p class="text-xs text-gray-100">
+                &copy; Copyright 2021 - All Rights Reserved.
+            </p>
+            <ul class="flex items-center text-white space-x-3 mt-3">
+                <li class="hover:text-indigo-600 transition duration-300 ease-in-out">
+                    <a href="{{ url('https://github.com/AngelinoVerhaeghe') }}">
+                        <i class="ri-github-fill text-3xl"></i>
+                    </a>
                 </li>
-                <li class="pb-1">
-                    <a href="/">Why we love design</a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">Why to use Laravel</a>
-                </li>
-                <li class="pb-1">
-                    <a href="/">Why PHP is the best</a>
+                <li class="hover:text-indigo-600 transition duration-300 ease-in-out">
+                    <a href="{{ url('https://www.linkedin.com/in/angelino-verhaeghe/') }}">
+                        <i class="ri-linkedin-fill text-3xl"></i>
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
-    <p class="w-25 w-4/5 pb-3 m-auto text-xs text-gray-100 pt-6">
-        &copy; Copyright 2021 - All Rights Reserved.
-    </p>
+
+
 </footer>

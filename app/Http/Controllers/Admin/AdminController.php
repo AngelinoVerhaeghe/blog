@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -24,6 +25,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+        $recentNewUsers = User::latest('created_at')->take(4)->get();
+        return view('admin.index', compact('recentNewUsers'));
     }
 }

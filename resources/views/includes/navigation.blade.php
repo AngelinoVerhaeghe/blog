@@ -21,7 +21,8 @@
                 </button>
             </div>
             <div>
-                <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline uppercase">
+                <a href="{{ url('/') }}"
+                    class="text-xl font-semibold text-gray-100 no-underline uppercase hover:text-yellow-400 transition duration-300 ease-in-out">
                     Blog
                 </a>
             </div>
@@ -44,7 +45,7 @@
                         <a href="{{ route('logout') }}"
                             class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                             onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                                                                                                                                                                                                                                        document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}
                         </form>
@@ -79,7 +80,7 @@
                     <a href="{{ route('logout') }}"
                         class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                                                            document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                                                                                                                                                                                                                                                                                    document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
                         {{ csrf_field() }}
                     </form>

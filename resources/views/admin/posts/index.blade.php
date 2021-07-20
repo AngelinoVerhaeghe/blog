@@ -9,14 +9,13 @@
         <div class="flex items-center justify-between py-8 pb-6 sm:px-6 lg:px-8 bg-gray-300 shadow-md">
             <h1 class="text-3xl text-gray-700 font-medium ">Blog Posts</h1>
             <a href="{{ url('admin/posts/create') }}"
-                class="uppercase bg-green-600 text-gray-100 text-md font-extrabold py-3 px-8 rounded-3xl shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                <span class="flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24"
+                class="uppercase bg-green-600 text-gray-100 text-md font-extrabold rounded-full p-3 shadow-md hover:bg-green-700 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                <span class="flex items-center" title="Create Post">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
-                    Create
                 </span>
             </a>
         </div>
@@ -33,7 +32,7 @@
                 </p>
             </div>
         @endif
-        <div class="flex flex-col mt-10">
+        <div class="flex flex-col my-10">
             <div class="overflow-x-auto">
                 @if (count($posts) > 0)
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -80,15 +79,15 @@
                                                     {{ $post->title }}
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4">
-                                                <div class="text-sm font-medium text-gray-900">
+                                            <td class="px-6 py-4 w-[450px]">
+                                                <div class="text-sm font-medium text-gray-900 line-clamp-3">
                                                     {{ $post->description }}
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    <img height="250" width="250"
-                                                        src="{{ $post->photo ? asset('posts/images/' . $post->photo->file) : 'http://place-hold.it/62x62' }}"
+                                                    <img height="200" width="200"
+                                                        src="{{ $post->photo ? asset('posts/images/' . $post->photo->file) : 'https://place-hold.it/200x200' }}"
                                                         alt="{{ $post->title }}">
                                                 </div>
                                             </td>

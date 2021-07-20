@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Photo;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostsCreateRequest;
@@ -39,7 +40,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        $categories = Category::all();
+        return view('blog.create', compact('categories'));
     }
 
     /**
@@ -122,16 +124,24 @@ class PostsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($id)
     {
-        $post = Post::where('slug', $slug);
-        $post->delete();
+        $post = Post::findOrFail($id);
+        $path = str_replace('\\', '/', public_path());
+        $image = '/posts/images/' . $post->photo->file;
 
-        return redirect('/blog')
-        ->with('message', 'Your post has been deleted!');
+        if (file_exists($path.$image)) {
+            unlink($path.$image);
+            $post->delete();
+            return redirect('/blogs')->with('message', 'Your post has been deleted!');
+        } else {
+            $post->delete();
+            return redirect('/blogs')->with('message', 'Your post has been deleted!');
+        }
+
     }
 }
 

@@ -18,7 +18,6 @@
                     <div class="space-y-6">
                         <div class="col-span-6 sm:col-span-3">
                             <label for="category_id" class="block text-sm font-medium text-gray-700">Blog Category</label>
-                            {{-- @dd($categories) --}}
 
                             <select id="category_id" name="category_id" autocomplete="category"
                                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -36,7 +35,7 @@
                                 value="{{ old('title') }}"
                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md @error('title') is-invalid @enderror">
                             @error('title')
-                                <span class="text-sm text-red-600">{{ $message }}</span>
+                                <span class="text-red-500 text-xs italic mt-4">{{ $message }}</span>
                             @enderror
                         </div>
                         <div>
@@ -47,9 +46,9 @@
                                 <textarea id="description" name="description" rows="10"
                                     class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md @error('description') is-invalid @enderror"
                                     value="{{ old('description') }}" placeholder="Message">
-                                                                                                                            </textarea>
+                                                                                                                                                </textarea>
                                 @error('description')
-                                    <span class="text-sm text-red-600">{{ $message }}</span>
+                                    <span class="text-red-500 text-xs italic mt-4">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
@@ -58,9 +57,9 @@
                         <label class="block text-sm font-medium text-gray-700 mb-3">
                             Blog photo
                         </label>
-                        <input type="file" name="photo_id" id="photo_id" class="@error('image') is-invalid @enderror">
+                        <input type="file" name="photo_id" id="photo_id" class="@error('photo_id') is-invalid @enderror">
                         @error('image')
-                            <span class="text-sm text-red-600">{{ $message }}</span>
+                            <span class="text-red-500 text-xs italic mt-4">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="px-4 py-3 border-t-2 border-gray-200 text-right space-x-3 mt-4">
