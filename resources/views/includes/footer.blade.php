@@ -42,11 +42,11 @@
         <div>
             <h3 class="text-lg sm:font-bold text-gray-100">Latest Posts</h3>
             <ul class="py-4 sm:text-sm pt-4 text-gray-400">
-                {{-- @foreach ($recentPosts as $recentPost)
+                @foreach ($posts as $post)
                     <li class="pb-1 hover:text-yellow-400 transition duration-300 ease-in-out">
-                        <a href="/blogs/{{ $recentPost->slug }}">{{ $recentPost->title }}</a>
+                        <a href="/blogs/{{ $post->slug }}">{{ $post->title }}</a>
                     </li>
-                @endforeach --}}
+                @endforeach
             </ul>
         </div>
     </div>
