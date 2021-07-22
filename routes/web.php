@@ -27,6 +27,7 @@ Auth::routes();
 //? Routes access only for logged in Users
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile/{user:name}', [UsersController::class, 'profile']);
+    Route::get('/blogs/{post:slug}/edit', [PostsController::class, 'edit'])->name('edit.post');
 });
 
 //? Routes access only for adminstrators

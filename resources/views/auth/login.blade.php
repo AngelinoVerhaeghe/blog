@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
+    <main class="container mx-auto sm:max-w-lg mt-10 px-2 lg:px-0">
         <div class="flex">
             <div class="w-full">
-                <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm">
+                <section class="flex flex-col break-words bg-white border-1 rounded-md shadow-sm">
 
-                    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                    <header
+                        class="flex justify-between items-center font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 rounded-t-md">
                         {{ __('Login') }}
+                        <i class="ri-user-line text-2xl"></i>
                     </header>
 
                     <form class="w-full px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
@@ -19,8 +21,8 @@
                             </label>
 
                             <input id="email" type="email"
-                                class="form-input w-full @error('email') border-red-500 @enderror" name="email"
-                                value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                class="form-input focus:outline-none w-full @error('email') border-red-500 @enderror"
+                                name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
                                 <p class="text-red-500 text-xs italic mt-4">

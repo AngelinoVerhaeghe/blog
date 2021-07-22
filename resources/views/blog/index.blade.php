@@ -15,7 +15,7 @@
             @if (session()->has('message'))
                 <div id="message" class="m-auto mt-10">
                     <p
-                        class="relative mb-4 text-green-500 bg-white/40 backdrop-blur-md border-l-2 border-green-500 py-7 pl-5 shadow-md">
+                        class="relative mb-4 text-gray-100 bg-green-500/70 backdrop-blur-md border-l-4 border-gray-100 py-7 pl-5 shadow-md">
                         {{ session()->get('message') }}
                         <span><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 absolute top-2 right-2 cursor-pointer"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor" id="close">
@@ -37,22 +37,23 @@
             @endif
 
             @if (count($posts) > 0)
-                <div class="lg:grid lg:grid-cols-2 lg:gap-10 2xl:grid-cols-3 mb-5">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-10 2xl:grid-cols-3 mb-5">
                     @foreach ($posts as $post)
-                        <div class="overflow-hidden rounded-lg shadow-lg mb-10">
-                            <div class="">
-                                <img src="{{ asset('posts/images/' . $post->photo->file) }}" class="object-cover" alt="">
+                        <div class="overflow-hidden rounded-lg shadow-lg">
+                            <div>
+                                <img src="{{ asset('posts/images/' . $post->photo->file) }}"
+                                    class="object-cover lg:h-72 lg:w-full" alt="">
                             </div>
                             <div class="p-4">
                                 <div class="flex items-center justify-between">
-                                    <h2 class="text-gray-500 text-2xl font-bold md:text-3xl">
+                                    <h2 class="text-gray-500 text-xl font-bold">
                                         {{ $post->title }}
                                     </h2>
 
                                     {{-- Only show Edit button if user is logged in and the user have the same id of the post! --}}
                                     @if (isset(Auth::user()->id) && Auth::user()->id == $post->user_id)
                                         <div class="flex items-center space-x-4">
-                                            <a href="/blogs/{{ $post->slug }}/edit"
+                                            <a href="/blogs/{{ $post->id }}/edit"
                                                 class="uppercase text-blue-600 text-sm font-extrabold hover:text-blue-800 rounded-3xl transition duration-300 ease-in-out focus:outline-none">
                                                 <span class="flex items-center">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none"
@@ -80,7 +81,7 @@
                                 <p class="text-gray-700 font-light line-clamp-5 my-4">
                                     {{ $post->description }}
                                 </p>
-                                <span class="flex justify-start xl:justify-end text-gray-400 mb-5">
+                                <span class="flex justify-start text-sm xl:justify-end text-gray-400 mb-5">
                                     By &nbsp;<span class="text-gray-800 font-bold italic">{{ $post->user->name }}</span>,
                                     -
                                     {{-- {{ date('jS M Y', strtotime($post->updated_at)) }} --}}

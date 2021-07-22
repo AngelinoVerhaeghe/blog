@@ -26,7 +26,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-       /*  $posts = Post::all(); */
         return view('blog.index')
             ->with('posts', Post::orderBy('updated_at', 'DESC')
             ->get()
@@ -82,24 +81,21 @@ class PostsController extends Controller
      */
     public function show($slug)
     {
-        return view('blog.show')
-            ->with('post', Post::where('slug', $slug)
-            ->first()
-        );
+        $post = Post::with(['category', 'photo', 'user'])->where('slug', $slug)->first();
+        return view('blog.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        return view('blog.edit')
-            ->with('post', Post::where('slug', $slug)
-            ->first()
-        );
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        return view('blog.edit', compact('post', 'categories'));
     }
 
     /**
@@ -109,12 +105,24 @@ class PostsController extends Controller
      * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(PostsCreateRequest $request, $id)
     {
 
-        $post = Post::where('slug', $slug);
-        $input = $request->except('image_path', '_token', '_method');
+        $post = Post::findOrFail($id);
+        $input = $request->only(['category_id', 'title', 'description', 'photo_id']);
+        if ($file = $request->file('photo_id') == '') {
+            $input = $request->except(['photo_id', '_token', '_method']);
+        }elseif($file = $request->file('photo_id')) {
+            $file = $request->file('photo_id');
+            $filename = time() . $file->getClientOriginalName();
+            $name = $file->getClientOriginalName();
+            $name = substr($name, 0, -4);
+            $file->move('/posts/images/', $filename);
+            $photo = Photo::create(['file' => $filename, 'name' => $name]);
+            $input['photo_id'] = $photo->id;
+        }
         $input['slug'] = Str::slug($request->title, '-');
+
         $post->update($input);
 
         return redirect('/blogs')
@@ -135,6 +143,8 @@ class PostsController extends Controller
 
         if (file_exists($path.$image)) {
             unlink($path.$image);
+            //? Delete posts photo also in Photo database
+            Photo::where('id', $post->photo_id)->delete();
             $post->delete();
             return redirect('/blogs')->with('message', 'Your post has been deleted!');
         } else {
@@ -143,5 +153,6 @@ class PostsController extends Controller
         }
 
     }
+
 }
 

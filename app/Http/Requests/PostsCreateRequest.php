@@ -27,7 +27,7 @@ class PostsCreateRequest extends FormRequest
             'category_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'photo_id' => 'required|mimes:jpg,png,jpeg|max:5048'
+            'photo_id' => 'mimes:jpg,png,jpeg|max:5048'
         ];
     }
 
@@ -36,7 +36,6 @@ class PostsCreateRequest extends FormRequest
             'category_id.required' => 'Category is required!',
             'title.required' => 'Title is required!',
             'description.required' => 'Description is required!',
-            'photo_id.required' => 'Upload image is required!'
         ];
     }
 }

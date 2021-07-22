@@ -88,7 +88,7 @@
                 <div class="bg-pink-800 text-gray-100 shadow-xl rounded-xl overflow-hidden">
                     <div class="">
                         <img src="{{ asset('posts/images/' . $recentPost->photo->file) }}"
-                            class="object-cover h-52 xl:h-56 w-full" alt="">
+                            class="object-cover h-72 w-full" alt="">
                     </div>
                     <div class="flex flex-col p-4">
                         <div>
@@ -135,11 +135,11 @@
     @endif
 
     {{-- Only show button when we got more than 3 recent posts --}}
-    @if (count($recentPosts) > 3)
+    @if (count($recentPosts) == 3)
         <section class="container mx-auto mt-10">
             <div class="flex items-center justify-center lg:justify-end">
                 <a href="/blogs"
-                    class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">Meer...</a>
+                    class="bg-gray-700 text-gray-100 font-bold py-2 px-10 rounded-full shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2">More...</a>
             </div>
         </section>
     @endif
